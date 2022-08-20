@@ -2,8 +2,8 @@ Package: com.ginsu.protectedbrowser
 Name: ProtectedBrowser
 Version: 0.0.1
 Architecture: iphoneos-arm
-Description: An awesome Orion tweak!
+Description: Disable dangerous JS injection in 3rd party in-app browsers
 Maintainer: Ginsu
 Author: Ginsu
 Section: Tweaks
-Depends: ${ORION}, firmware (>= 12.2)
+Depends: dev.theos.orion14, firmware (>= 14.0), preferenceloader, com.ginsu.libgscommon

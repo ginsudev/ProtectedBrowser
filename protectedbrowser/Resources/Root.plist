@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>cellClass</key>
+			<string>PSSubtitleSwitchTableCell</string>
+			<key>cellSubtitleText</key>
+			<string>Prevent malicious JavaScript injection</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>com.ginsu.protectedbrowser</string>
+			<key>key</key>
+			<string>isEnabled</string>
+			<key>label</key>
+			<string>Enabled</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+            <key>label</key>
+            <string>Configuration</string>
+			<key>footerText</key>
+			<string>This option is for the extra paranoid people, it prevents 100% of JavaScript from running (Including evil and good). Enabling this option might cause issues in some apps. Most people should be fine with this option disabled.</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>cellClass</key>
+			<string>PSSubtitleSwitchTableCell</string>
+			<key>cellSubtitleText</key>
+			<string>Prevent execution of all JavaScript</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.ginsu.protectedbrowser</string>
+			<key>key</key>
+			<string>overkillMode</string>
+			<key>label</key>
+			<string>Disable all scripts</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>This option will alert you if external JavaScript was injected into a webpage while the app was unprotected.</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>cellClass</key>
+			<string>PSSubtitleSwitchTableCell</string>
+			<key>cellSubtitleText</key>
+			<string>Show an alert if an app injects JS</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>com.ginsu.protectedbrowser</string>
+			<key>key</key>
+			<string>monitor</string>
+			<key>label</key>
+			<string>Detect JS injection</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+            <key>label</key>
+            <string>Apps</string>
+			<key>footerText</key>
+			<string>Choose which apps the above settings will be applied to.</string>
+		</dict>
+        <dict>
+            <key>bundle</key>
+            <string>AltList</string>
+            <key>cell</key>
+            <string>PSLinkListCell</string>
+            <key>detail</key>
+            <string>ATLApplicationListMultiSelectionController</string>
+            <key>key</key>
+            <string>enabledApps</string>
+            <key>defaults</key>
+            <string>com.ginsu.protectedbrowser</string>
+            <key>sections</key>
+            <array>
+                <dict>
+                    <key>sectionType</key>
+                    <string>Visible</string>
+                </dict>
+            </array>
+            <key>isController</key>
+            <true/>
+            <key>overridePrincipalClass</key>
+            <true/>
+            <key>label</key>
+            <string>Protected apps</string>
+            <key>useSearchBar</key>
+            <true/>
+            <key>alphabeticIndexingEnabled</key>
+            <true/>
+        </dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Repo</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>cellClass</key>
+			<string>GSRepoCell</string>
+			<key>link</key>
+			<string>https://repo.ginsu.dev</string>
+			<key>title</key>
+			<string>Add Ginsu's repo</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>© 2021 - 2022 Ginsu (@ginsudev)</string>
+			<key>footerAlignment</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>title</key>
+	<string>ProtectedBrowser</string>
+</dict>
+</plist>
