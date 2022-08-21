@@ -3,7 +3,7 @@ import WebKit
 import ProtectedBrowserC
 
 enum ProtectionMode: Int {
-case onlyHarmful = 0, all = 1, forceSafari = 2
+    case onlyHarmful = 0, all = 1, forceSafari = 2
 }
 
 struct Settings {
@@ -73,7 +73,11 @@ class Monitor_Hook: ClassHook<WKWebView> {
         
         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel))
         
-        target._viewControllerForAncestor().present(alert, animated: true)
+        guard let ancestor = target._viewControllerForAncestor() else {
+            return
+        }
+        
+        ancestor.present(alert, animated: true)
     }
 }
 
@@ -166,7 +170,6 @@ struct ProtectedBrowser: Tweak {
                 ExternalScripts().activate()
                 break
             }
-
         }
     }
 }
