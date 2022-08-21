@@ -6,4 +6,4 @@ Description: Disable dangerous JS injection in 3rd party in-app browsers
 Maintainer: Ginsu
 Author: Ginsu
 Section: Tweaks
-Depends: dev.theos.orion14, firmware (>= 14.0), preferenceloader, com.ginsu.libgscommon
+Depends: dev.theos.orion14, firmware (>= 14.0), preferenceloader, com.ginsu.libgscommon, com.opa334.altlist

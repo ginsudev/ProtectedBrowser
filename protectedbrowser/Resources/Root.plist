@@ -10,7 +10,7 @@
 			<key>cellClass</key>
 			<string>PSSubtitleSwitchTableCell</string>
 			<key>cellSubtitleText</key>
-			<string>Prevent malicious JavaScript injection</string>
+			<string>Enable/Disable the tweak</string>
 			<key>default</key>
 			<true/>
 			<key>defaults</key>
@@ -26,24 +26,34 @@
             <key>label</key>
             <string>Configuration</string>
 			<key>footerText</key>
-			<string>This option is for the extra paranoid people, it prevents 100% of JavaScript from running (Including evil and good). Enabling this option might cause issues in some apps. Most people should be fine with this option disabled.</string>
+			<string>Choose which level of protection you'd like to have. Disabling all scripts might cause unexpected behaviour in a lot of apps, so use that with caution.</string>
 		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSSwitchCell</string>
-			<key>cellClass</key>
-			<string>PSSubtitleSwitchTableCell</string>
-			<key>cellSubtitleText</key>
-			<string>Prevent execution of all JavaScript</string>
-			<key>default</key>
-			<false/>
-			<key>defaults</key>
-			<string>com.ginsu.protectedbrowser</string>
-			<key>key</key>
-			<string>overkillMode</string>
-			<key>label</key>
-			<string>Disable all scripts</string>
-		</dict>
+        <dict>
+            <key>cell</key>
+            <string>PSLinkListCell</string>
+            <key>detail</key>
+            <string>protectedbrowser.PBPickerController</string>
+            <key>default</key>
+            <integer>0</integer>
+            <key>defaults</key>
+            <string>com.ginsu.protectedbrowser</string>
+            <key>label</key>
+            <string>Protection mode</string>
+            <key>key</key>
+            <string>protectionMode</string>
+            <key>validValues</key>
+            <array>
+                <integer>0</integer>
+                <integer>1</integer>
+                <integer>2</integer>
+            </array>
+            <key>validTitles</key>
+            <array>
+                <string>Disable harmful scripts (Safe)</string>
+                <string>Disable all scripts (Safe, may cause issues)</string>
+                <string>Force open in Safari (Safest)</string>
+            </array>
+        </dict>
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
@@ -56,7 +66,7 @@
 			<key>cellClass</key>
 			<string>PSSubtitleSwitchTableCell</string>
 			<key>cellSubtitleText</key>
-			<string>Show an alert if an app injects JS</string>
+			<string>Alerts you if an app injects JS</string>
 			<key>default</key>
 			<true/>
 			<key>defaults</key>
@@ -64,7 +74,7 @@
 			<key>key</key>
 			<string>monitor</string>
 			<key>label</key>
-			<string>Detect JS injection</string>
+			<string>Alert on JS injection</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -123,7 +133,8 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>footerText</key>
-			<string>© 2021 - 2022 Ginsu (@ginsudev)</string>
+			<string>© 2022 Ginsu (@ginsudev)
+Icon by @bank5ia</string>
 			<key>footerAlignment</key>
 			<integer>1</integer>
 		</dict>

@@ -4,8 +4,8 @@
 <dict>
 	<key>isEnabled</key>
 	<true/>
-	<key>overkillMode</key>
-	<false/>
+	<key>protectionMode</key>
+	<integer>0<integer/>
 	<key>monitor</key>
 	<true/>
 </dict>

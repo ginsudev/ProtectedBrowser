@@ -2,20 +2,40 @@ import Orion
 import WebKit
 import ProtectedBrowserC
 
+enum ProtectionMode: Int {
+case onlyHarmful = 0, all = 1, forceSafari = 2
+}
+
 struct Settings {
     static var isEnabled: Bool!
-    static var overkillMode: Bool!
+    static var protectionMode: ProtectionMode!
     static var monitor: Bool!
     static var enabledApps: [String]!
 }
 
-struct tweak: HookGroup {}
-struct overkillMode: HookGroup {}
-struct monitor: HookGroup {}
+struct ExternalScripts: HookGroup {}
+struct AllScripts: HookGroup {}
+struct ForceSafari: HookGroup {}
+struct Monitor: HookGroup {}
 
-//MARK: - External JS detection.
-class WKWebView_Hook: ClassHook<WKWebView> {
-    typealias Group = monitor
+//MARK: - Force open Safari.
+class ForceSafari_Hook: ClassHook<WKWebView> {
+    typealias Group = ForceSafari
+    
+    func _didStartProvisionalLoadForMainFrame() {
+        orig._didStartProvisionalLoadForMainFrame()
+        
+        guard let url = target.url else {
+            return
+        }
+        
+        UIApplication.shared.open(url)
+    }
+}
+
+//MARK: - Monitoring for JS injection.
+class Monitor_Hook: ClassHook<WKWebView> {
+    typealias Group = Monitor
     
     func _didCommitLoadForMainFrame() {
         orig._didCommitLoadForMainFrame()
@@ -58,8 +78,8 @@ class WKWebView_Hook: ClassHook<WKWebView> {
 }
 
 //MARK: - Removing external JS
-class WKUserContentController_Hook: ClassHook<WKUserContentController> {
-    typealias Group = tweak
+class ExternalJS_Hook: ClassHook<WKUserContentController> {
+    typealias Group = ExternalScripts
 
     func addUserScript(_ script: WKUserScript) {
         target.removeAllUserScripts()
@@ -68,8 +88,8 @@ class WKUserContentController_Hook: ClassHook<WKUserContentController> {
 }
 
 //MARK: - Overkill
-class WKWebViewConfiguration_Hook: ClassHook<WKWebViewConfiguration> {
-    typealias Group = overkillMode
+class AllJS_Hook: ClassHook<WKWebViewConfiguration> {
+    typealias Group = AllScripts
 
     func _allowsJavaScriptMarkup() -> Bool {
         return false
@@ -106,7 +126,7 @@ fileprivate func readPrefs() {
     
     //Reading values
     Settings.isEnabled = dict["isEnabled"] as? Bool ?? true
-    Settings.overkillMode = dict["overkillMode"] as? Bool ?? false
+    Settings.protectionMode = ProtectionMode(rawValue: dict["protectionMode"] as? Int ?? 0)
     Settings.monitor = dict["monitor"] as? Bool ?? true
     Settings.enabledApps = dict["enabledApps"] as? [String] ?? [""]
 }
@@ -121,10 +141,16 @@ struct ProtectedBrowser: Tweak {
             }
                         
             if Settings.enabledApps.contains(identifier) {
-                tweak().activate()
-
-                if Settings.overkillMode {
-                    overkillMode().activate()
+                switch Settings.protectionMode {
+                case .all:
+                    ExternalScripts().activate()
+                    AllScripts().activate()
+                case .onlyHarmful:
+                    ExternalScripts().activate()
+                case .forceSafari:
+                    ForceSafari().activate()
+                default:
+                    ExternalScripts().activate()
                 }
             } else {
                 guard identifier != "com.apple.springboard" else {
@@ -132,7 +158,7 @@ struct ProtectedBrowser: Tweak {
                 }
                 
                 if Settings.monitor {
-                    monitor().activate()
+                    Monitor().activate()
                 }
             }
         }
