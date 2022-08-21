@@ -5,7 +5,7 @@
 	<key>isEnabled</key>
 	<true/>
 	<key>protectionMode</key>
-	<integer>0<integer/>
+	<integer>0</integer>
 	<key>monitor</key>
 	<true/>
 </dict>

@@ -35,7 +35,7 @@ class RootListController: PSListController {
     override func readPreferenceValue(_ specifier: PSSpecifier!) -> Any! {
         var propertyListFormat =  PropertyListSerialization.PropertyListFormat.xml
         
-        let plistURL = URL(fileURLWithPath: "/User/Library/Preferences/com.ginsu.\(name).plist")
+        let plistURL = URL(fileURLWithPath: "/User/Library/Preferences/com.ginsu.\(name)-new.plist")
 
         guard let plistXML = try? Data(contentsOf: plistURL) else {
             return specifier.properties["default"]
@@ -55,7 +55,7 @@ class RootListController: PSListController {
     override func setPreferenceValue(_ value: Any!, specifier: PSSpecifier!) {
         var propertyListFormat =  PropertyListSerialization.PropertyListFormat.xml
         
-        let plistURL = URL(fileURLWithPath: "/User/Library/Preferences/com.ginsu.\(name).plist")
+        let plistURL = URL(fileURLWithPath: "/User/Library/Preferences/com.ginsu.\(name)-new.plist")
 
         guard let plistXML = try? Data(contentsOf: plistURL) else {
             return
@@ -89,7 +89,7 @@ class RootListController: PSListController {
                                 twitterHandle: "ginsudev",
                                 developerName: "Ginsu",
                                 tweakName: "ProtectedBrowser",
-                                tweakVersion: "v1.2.0",
+                                tweakVersion: "v1.2.1",
                                 email: "njl02@outlook.com",
                                 discordURL: "https://discord.gg/BhdUyCbgkZ",
                                 donateURL: "https://paypal.me/xiaonuoya")

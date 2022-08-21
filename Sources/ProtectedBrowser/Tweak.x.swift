@@ -98,9 +98,9 @@ class AllJS_Hook: ClassHook<WKWebViewConfiguration> {
 
 //MARK: - Preferences
 fileprivate func prefsDict() -> [String : AnyObject]? {
-    var propertyListFormat =  PropertyListSerialization.PropertyListFormat.xml
+    var propertyListFormat = PropertyListSerialization.PropertyListFormat.xml
     
-    let path = "/var/mobile/Library/Preferences/com.ginsu.protectedbrowser.plist"
+    let path = "/var/mobile/Library/Preferences/com.ginsu.protectedbrowser-new.plist"
     
     if !FileManager().fileExists(atPath: path) {
         try? FileManager().copyItem(atPath: "Library/PreferenceBundles/protectedbrowser.bundle/defaults.plist",
@@ -139,28 +139,34 @@ struct ProtectedBrowser: Tweak {
             guard let identifier = Bundle.main.bundleIdentifier else {
                 return
             }
-                        
-            if Settings.enabledApps.contains(identifier) {
-                switch Settings.protectionMode {
-                case .all:
-                    ExternalScripts().activate()
-                    AllScripts().activate()
-                case .onlyHarmful:
-                    ExternalScripts().activate()
-                case .forceSafari:
-                    ForceSafari().activate()
-                default:
-                    ExternalScripts().activate()
-                }
-            } else {
-                guard identifier != "com.apple.springboard" else {
-                    return
-                }
-                
+            
+            guard !identifier.hasPrefix("com.apple.") else {
+                return
+            }
+            
+            guard Settings.enabledApps.contains(identifier) else {
                 if Settings.monitor {
                     Monitor().activate()
                 }
+                return
             }
+            
+            switch Settings.protectionMode {
+            case .all:
+                ExternalScripts().activate()
+                AllScripts().activate()
+                break
+            case .onlyHarmful:
+                ExternalScripts().activate()
+                break
+            case .forceSafari:
+                ForceSafari().activate()
+                break
+            default:
+                ExternalScripts().activate()
+                break
+            }
+
         }
     }
 }
