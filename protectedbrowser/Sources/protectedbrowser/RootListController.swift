@@ -89,7 +89,7 @@ class RootListController: PSListController {
                                 twitterHandle: "ginsudev",
                                 developerName: "Ginsu",
                                 tweakName: "ProtectedBrowser",
-                                tweakVersion: "v1.2.2",
+                                tweakVersion: "v1.2.4",
                                 email: "njl02@outlook.com",
                                 discordURL: "https://discord.gg/BhdUyCbgkZ",
                                 donateURL: "https://paypal.me/xiaonuoya")

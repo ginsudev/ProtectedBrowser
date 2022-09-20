@@ -14,7 +14,7 @@
 			<key>default</key>
 			<true/>
 			<key>defaults</key>
-			<string>com.ginsu.protectedbrowser</string>
+			<string>com.ginsu.protectedbrowser-new</string>
 			<key>key</key>
 			<string>isEnabled</string>
 			<key>label</key>
@@ -25,93 +25,16 @@
 			<string>PSGroupCell</string>
             <key>label</key>
             <string>Configuration</string>
-			<key>footerText</key>
-			<string>Choose which level of protection you'd like to have. Disabling all scripts might cause unexpected behaviour in a lot of apps, so use that with caution.</string>
 		</dict>
         <dict>
             <key>cell</key>
-            <string>PSLinkListCell</string>
+            <string>PSLinkCell</string>
             <key>detail</key>
-            <string>protectedbrowser.PBPickerController</string>
-            <key>default</key>
-            <integer>0</integer>
-            <key>defaults</key>
-            <string>com.ginsu.protectedbrowser</string>
-            <key>label</key>
-            <string>Protection mode</string>
-            <key>key</key>
-            <string>protectionMode</string>
-            <key>validValues</key>
-            <array>
-                <integer>0</integer>
-                <integer>1</integer>
-                <integer>2</integer>
-            </array>
-            <key>validTitles</key>
-            <array>
-                <string>Disable harmful scripts (Safe)</string>
-                <string>Disable all scripts (Safe, may cause issues)</string>
-                <string>Force open in Safari (Safest)</string>
-            </array>
-        </dict>
-		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
-			<key>footerText</key>
-			<string>This option will alert you if external JavaScript was injected into a webpage while the app was unprotected.</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSSwitchCell</string>
-			<key>cellClass</key>
-			<string>PSSubtitleSwitchTableCell</string>
-			<key>cellSubtitleText</key>
-			<string>Alerts you if an app injects JS</string>
-			<key>default</key>
-			<true/>
-			<key>defaults</key>
-			<string>com.ginsu.protectedbrowser</string>
-			<key>key</key>
-			<string>monitor</string>
-			<key>label</key>
-			<string>Alert on JS injection</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
-            <key>label</key>
-            <string>Apps</string>
-			<key>footerText</key>
-			<string>Choose which apps the above settings will be applied to.</string>
-		</dict>
-        <dict>
-            <key>bundle</key>
-            <string>AltList</string>
-            <key>cell</key>
-            <string>PSLinkListCell</string>
-            <key>detail</key>
-            <string>ATLApplicationListMultiSelectionController</string>
-            <key>key</key>
-            <string>enabledApps</string>
-            <key>defaults</key>
-            <string>com.ginsu.protectedbrowser</string>
-            <key>sections</key>
-            <array>
-                <dict>
-                    <key>sectionType</key>
-                    <string>User</string>
-                </dict>
-            </array>
+            <string>protectedbrowser.PBBehaviourController</string>
             <key>isController</key>
             <true/>
-            <key>overridePrincipalClass</key>
-            <true/>
             <key>label</key>
-            <string>Protected apps</string>
-            <key>useSearchBar</key>
-            <true/>
-            <key>alphabeticIndexingEnabled</key>
-            <true/>
+            <string>Behaviour</string>
         </dict>
 		<dict>
 			<key>cell</key>

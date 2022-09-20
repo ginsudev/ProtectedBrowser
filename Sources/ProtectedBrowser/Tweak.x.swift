@@ -11,6 +11,7 @@ struct Settings {
     static var protectionMode: ProtectionMode!
     static var monitor: Bool!
     static var enabledApps: [String]!
+    static var allApps: Bool!
 }
 
 struct ExternalScripts: HookGroup {}
@@ -133,6 +134,7 @@ fileprivate func readPrefs() {
     Settings.protectionMode = ProtectionMode(rawValue: dict["protectionMode"] as? Int ?? 0)
     Settings.monitor = dict["monitor"] as? Bool ?? true
     Settings.enabledApps = dict["enabledApps"] as? [String] ?? [""]
+    Settings.allApps = dict["allApps"] as? Bool ?? false
 }
 
 struct ProtectedBrowser: Tweak {
@@ -148,7 +150,25 @@ struct ProtectedBrowser: Tweak {
                 return
             }
             
-            guard Settings.enabledApps.contains(identifier) else {
+            var canProtect: Bool {
+                if Settings.allApps {
+                    guard let proxy = LSApplicationProxy.applicationProxy(forIdentifier: identifier) as? LSApplicationProxy else {
+                        return false
+                    }
+                    
+                    if proxy.atl_isUserApplication() {
+                        return true
+                    }
+                } else {
+                    if Settings.enabledApps.contains(identifier) {
+                        return true
+                    }
+                }
+                
+                return false
+            }
+            
+            guard canProtect else {
                 if Settings.monitor {
                     Monitor().activate()
                 }

@@ -8,5 +8,7 @@
 	<integer>0</integer>
 	<key>monitor</key>
 	<true/>
+	<key>allApps</key>
+	<false/>
 </dict>
 </plist>
